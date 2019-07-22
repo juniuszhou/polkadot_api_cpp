@@ -357,6 +357,7 @@ unique_ptr<MDV5> fillV5Metadata(std::string str) {
     memset((void *)result, 0, sizeof(MDV5));
     unique_ptr<MDV5> md(result);
     int mLen = decodeCompactInteger(str);
+    cout << endl << "length of modules is " << mLen << endl;
     for (auto moduleIndex = 0; moduleIndex < mLen; moduleIndex++) {
         // create module instance
         unique_ptr<ModuleV5> module(new ModuleV5);
@@ -364,11 +365,13 @@ unique_ptr<MDV5> fillV5Metadata(std::string str) {
 
         // get module name
         int moduleNameLen = decodeCompactInteger(str);
+        cout << "module name length is " << moduleNameLen << endl;
         strcpy(md->module[moduleIndex]->name, extractString(str, moduleNameLen).c_str());
         cout << "module name is " << md->module[moduleIndex]->name << endl;
 
         // get module prefix
         int modulePrefixLen = decodeCompactInteger(str);
+        cout << "module prefix length is " << modulePrefixLen << endl;
         strcpy(md->module[moduleIndex]->prefix, extractString(str, modulePrefixLen).c_str());
         cout << "module prefix is " << md->module[moduleIndex]->prefix << endl;
 
@@ -377,6 +380,7 @@ unique_ptr<MDV5> fillV5Metadata(std::string str) {
         auto storageIsset = nextByte(str);
         if (storageIsset != 0) {
             int storageLen = decodeCompactInteger(str);
+            cout << "storage length is " << storageLen << endl;
             for (int i = 0; i < storageLen; i++) {
                 md->module[moduleIndex]->storage[i] = getStorageV5(str);
                 cout << "storage is " << md->module[moduleIndex]->storage[i]->name << endl;
