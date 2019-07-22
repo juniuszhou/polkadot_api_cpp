@@ -549,10 +549,12 @@ unique_ptr<MDV4> fillV4Metadata(std::string str) {
         // get module name
         int moduleNameLen = decodeCompactInteger(str);
         strcpy(md->module[moduleIndex]->name, extractString(str, moduleNameLen).c_str());
+        cout << "module name " << md->module[moduleIndex]->name;
 
         // get module prefix
         int modulePrefixLen = decodeCompactInteger(str);
         strcpy(md->module[moduleIndex]->prefix, extractString(str, modulePrefixLen).c_str());
+        cout << "module prefix " << md->module[moduleIndex]->prefix;
 
         // ---------- Storage
         // storage is not null
@@ -561,6 +563,8 @@ unique_ptr<MDV4> fillV4Metadata(std::string str) {
             int storageLen = decodeCompactInteger(str);
             for (int i = 0; i < storageLen; i++) {
                 md->module[moduleIndex]->storage[i] = getStorageV4(str);
+                cout << "storage " << md->module[moduleIndex]->storage[i].name
+                                   << " " << md->module[moduleIndex]->storage[i].modifier;
             }
         }else {
             for (int i = 0; i < COLLECTION_SIZE; i++) {
@@ -575,6 +579,7 @@ unique_ptr<MDV4> fillV4Metadata(std::string str) {
             int callsCount = decodeCompactInteger(str);
             for (int i = 0; i < callsCount; i++) {
                 md->module[moduleIndex]->call[i] = getCallV5(str);
+                cout << "call " << md->module[moduleIndex]->storage[i].name;
             }
         }else {
             for (int i = 0; i < COLLECTION_SIZE; i++) {
@@ -589,6 +594,7 @@ unique_ptr<MDV4> fillV4Metadata(std::string str) {
             int eventsCount = decodeCompactInteger(str);
             for (int i = 0; i < eventsCount; i++) {
                 md->module[moduleIndex]->ev[i] = getEventV5(str);
+                cout << "event " << md->module[moduleIndex]->storage[i].name;
             }
         }else {
             for (int i = 0; i < COLLECTION_SIZE; i++) {
