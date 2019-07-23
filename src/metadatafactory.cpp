@@ -208,6 +208,7 @@ unique_ptr<StorageV5> getStorageV5(std::string &str) {
 
     int storageNameLen = decodeCompactInteger(str);
     strcpy(storage->name, extractString(str, storageNameLen).c_str());
+    cout << "storage name is " << storage->name << endl;
 
     storage->modifier = nextByte(str);
     auto hasSecondType = nextByte(str);
@@ -248,6 +249,7 @@ unique_ptr<StorageV5> getStorageV5(std::string &str) {
     auto fallback = str.substr(0, fallbackLen * 2);
     str = str.substr(fallbackLen * 2);
     strcpy(storage->fallback, fallback.c_str());
+    cout << "fallback len " << fallbackLen << " fallback is " << storage->fallback << endl;
 
     // documents count
     auto docCount = decodeCompactInteger(str);
@@ -255,6 +257,7 @@ unique_ptr<StorageV5> getStorageV5(std::string &str) {
         auto docStringLen = decodeCompactInteger(str);
         auto docItem = extractString(str, docStringLen);
         strcpy(storage->documentation[di], docItem.c_str());
+        cout << "document len is " << docStringLen << " document is " << storage->documentation[di] << endl;
     }
 
     return move(storage);
