@@ -50,3 +50,5 @@ install_manifest.txt
 
 # local config file
 config.json
+
+idea/

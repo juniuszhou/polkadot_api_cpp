@@ -401,7 +401,7 @@ unique_ptr<MDV5> fillV5Metadata(std::string str) {
             int callsCount = decodeCompactInteger(str);
             for (int i = 0; i < callsCount; i++) {
                 md->module[moduleIndex]->call[i] = getCallV5(str);
-                cout << "storage is " << md->module[moduleIndex]->call[i]->name << endl;
+                cout << "call is " << md->module[moduleIndex]->call[i]->name << endl;
             }
         }else {
             for (int i = 0; i < COLLECTION_SIZE; i++) {
@@ -416,7 +416,7 @@ unique_ptr<MDV5> fillV5Metadata(std::string str) {
             int eventsCount = decodeCompactInteger(str);
             for (int i = 0; i < eventsCount; i++) {
                 md->module[moduleIndex]->ev[i] = getEventV5(str);
-                cout << "storage is " << md->module[moduleIndex]->ev[i]->name << endl;
+                cout << "event is " << md->module[moduleIndex]->ev[i]->name << endl;
             }
         }else {
             for (int i = 0; i < COLLECTION_SIZE; i++) {
