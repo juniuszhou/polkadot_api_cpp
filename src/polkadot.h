@@ -11,9 +11,11 @@
 #include <websocketpp/config/asio_client.hpp>
 #include <websocketpp/config/asio_no_tls_client.hpp>
 
+#include "libs/int128/int128.h"
+typedef absl::uint128 uint128;
+
 #include "libs/easyloggingpp/easylogging++.h"
 #include "libs/json11/json11.hpp"
-#include "scale.h"
 using namespace json11;
 
 using namespace std;
@@ -22,14 +24,11 @@ extern "C" {
     #include "utils/sr25519.h"
 }
 
-
 #include "polkacpp.h"
 
 // Include structs
 #include "structs/publickey.h"
 #include "structs/hasher.h"
-#include "structs/signaturepayload.h"
-#include "structs/extrinsic.h"
 #include "structs/transfer.h"
 
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['request',['request',['../classIJsonRpc.html#a99c78860e4c7f6774b35a6026fda7e2c',1,'IJsonRpc::request()'],['../classCJsonRpc.html#a478d031a671ffea78d27fa41f7464812',1,'CJsonRpc::request()']]]
+  ['pendingextrinsics',['pendingExtrinsics',['../classCPolkaApi.html#a53670217cc5708635279e7fff965f3a7',1,'CPolkaApi::pendingExtrinsics()'],['../classIApplication.html#a03a5700c775370bb6c8bdcd2fbc2f261',1,'IApplication::pendingExtrinsics()']]]
 ];

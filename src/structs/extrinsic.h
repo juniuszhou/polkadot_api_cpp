@@ -4,6 +4,15 @@ struct Method {
 };
 
 struct Extrinsic {
-    unsigned __int128 length;
+    uint128 length;
     Signature signature;
+};
+
+struct GenericMethod : public Method {
+    string methodBytes;
+};
+
+struct GenericExtrinsic : public Extrinsic {
+    GenericMethod method;
+    string signerAddress;
 };

@@ -1,16 +1,13 @@
 
 struct TransferMethod : public Method {
     uint8_t receiverPublicKey[SR25519_PUBLIC_SIZE];
-    unsigned __int128 amount;
+    uint128 amount;
 };
 
 struct TransferExtrinsic : public Extrinsic {
     TransferMethod method;
 
     long serializeMethodBinary(uint8_t *buf) {
-        // Compact-encode amount
-        auto compactAmount = scale::encodeCompactInteger(method.amount);
-
         int writtenLength = 0;
 
         // Module + Method
@@ -23,6 +20,9 @@ struct TransferExtrinsic : public Extrinsic {
         // Receiving address public key
         memcpy(buf + writtenLength, method.receiverPublicKey, SR25519_PUBLIC_SIZE);
         writtenLength += SR25519_PUBLIC_SIZE;
+
+        // Compact-encode amount
+        auto compactAmount = scale::encodeCompactInteger(method.amount);
 
         // Amount
         writtenLength += scale::writeCompactToBuf(compactAmount, buf + writtenLength);
