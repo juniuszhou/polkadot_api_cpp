@@ -599,12 +599,12 @@ unsigned long CPolkaApi::getAccountNonce(string address) {
 string CPolkaApi::getKeys(const string &jsonPrm, const string &module, const string &variable) {
     // Determine if parameters are required for given module + variable
     // Find the module and variable indexes in metadata
-    int moduleIndex = getModuleIndex(_protocolPrm.metadata, module, false);
-    if (moduleIndex == -1)
-        throw ApplicationException("Module not found");
-    int variableIndex = getStorageMethodIndex(_protocolPrm.metadata, moduleIndex, variable);
-    if (variableIndex == -1)
-        throw ApplicationException("Variable not found");
+//    int moduleIndex = getModuleIndex(_protocolPrm.metadata, module, false);
+//    if (moduleIndex == -1)
+//        throw ApplicationException("Module not found");
+//    int variableIndex = getStorageMethodIndex(_protocolPrm.metadata, moduleIndex, variable);
+//    if (variableIndex == -1)
+//        throw ApplicationException("Variable not found");
 
     string key;
     if (isStateVariablePlain(_protocolPrm.metadata, moduleIndex, variableIndex)) {
@@ -617,10 +617,14 @@ string CPolkaApi::getKeys(const string &jsonPrm, const string &module, const str
 
 string CPolkaApi::getStorage(const string &jsonPrm, const string &module, const string &variable) {
 
-    // Get most recent block hash
-    auto headHash = getBlockHash(nullptr);
+    cout << "CPolkaApi::getStorage in application.cpp" << endl;
+
 
     string key = getKeys(jsonPrm, module, variable);
+    cout << "key is " << key;
+
+    // Get most recent block hash
+    auto headHash = getBlockHash(nullptr);
     Json query = Json::object{{"method", "state_getStorage"}, {"params", Json::array{key, headHash->hash}}};
     Json response = _jsonRpc->request(query);
 

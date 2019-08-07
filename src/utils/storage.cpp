@@ -59,7 +59,7 @@ string StorageUtils::getAddressStorageKey(const Hasher hasher, const Address &ad
 }
 
 string StorageUtils::getMappedStorageKey(const Hasher hasher, const string &jsonPrm, const string &prefix) {
-
+    cout << "StorageUtils::getMappedStorageKey in storage.cpp" << endl;
     // Parse parameters
     Json json;
     try {
