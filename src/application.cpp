@@ -607,11 +607,11 @@ string CPolkaApi::getKeys(const string &jsonPrm, const string &module, const str
 //        throw ApplicationException("Variable not found");
 
     string key;
-    if (isStateVariablePlain(_protocolPrm.metadata, moduleIndex, variableIndex)) {
-        key = StorageUtils::getPlainStorageKey(_protocolPrm.FreeBalanceHasher, module + " " + variable);
-    } else {
+//    if (isStateVariablePlain(_protocolPrm.metadata, moduleIndex, variableIndex)) {
+//        key = StorageUtils::getPlainStorageKey(_protocolPrm.FreeBalanceHasher, module + " " + variable);
+//    } else {
         key = StorageUtils::getMappedStorageKey(_protocolPrm.FreeBalanceHasher, jsonPrm, module + " " + variable);
-    }
+    // }
     return key;
 }
 
