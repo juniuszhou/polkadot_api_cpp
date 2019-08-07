@@ -77,6 +77,8 @@ PublicKey AddressUtils::getPublicKeyFromAddr(const Address &addr) {
         memcpy(pubk.bytes, bs58decoded + 1, PUBLIC_KEY_LENGTH);
     }
 
+    cout << "getPublicKeyFromAddr is " << pubk.bytes << endl;
+
     // TODO: Check the address checksum
     // Add SS58RPE prefix, remove checksum (2 bytes)
     // unsigned char SS58RPE[] = {0x53, 0x53, 0x35, 0x38, 0x50, 0x52, 0x45};

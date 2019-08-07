@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]) {
 
-    string address = "5ECcjykmdAQK71qHBCkEWpWkoMJY6NXvpdKy8UeMx16q5gFr";
+    string address = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
     string module1 = "Balances";
     string variable1 = "FreeBalance";
     string module2 = "System";
