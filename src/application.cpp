@@ -621,7 +621,7 @@ string CPolkaApi::getStorage(const string &jsonPrm, const string &module, const 
 
 
     string key = getKeys(jsonPrm, module, variable);
-    cout << "key is " << key;
+    cout << "key is " << key << endl;
 
     // Get most recent block hash
     auto headHash = getBlockHash(nullptr);

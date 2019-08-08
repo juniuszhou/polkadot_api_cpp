@@ -6,6 +6,7 @@ string StorageUtils::getStorageKey(const Hasher hasher, const unsigned char *dat
     char key[2 * STORAGE_KEY_BYTELENGTH + 3] = {0};
 
     if (hasher == XXHASH) {
+        cout << "StorageUtils::getStorageKey" << endl;
         auto xxhash1 = XXH64(data, length, 0);
         unsigned char bytes1[8] = {(unsigned char)(xxhash1 & 0xFF),
                                    (unsigned char)((xxhash1 & 0xFF00) >> 8),
@@ -79,6 +80,7 @@ string StorageUtils::getMappedStorageKey(const Hasher hasher, const string &json
 
     string type(json["type"].string_value());
     if (type == STORAGE_TYPE_ADDRESS) {
+        cout << "StorageUtils::getMappedStorageKey in storage.cpp" << "type == STORAGE_TYPE_ADDRESS" << endl;
         Address addr;
         memcpy(addr.symbols, json["value"].string_value().c_str(), ADDRESS_LENGTH);
         return getAddressStorageKey(hasher, addr, prefix);
@@ -89,6 +91,7 @@ string StorageUtils::getMappedStorageKey(const Hasher hasher, const string &json
         sprintf(data, "%s%s", prefix.c_str(), json["value"].string_value().c_str());
         return getStorageKey(hasher, (const unsigned char *)data, strlen(data));
     } else if (type == STORAGE_TYPE_HASH) {
+        cout << "StorageUtils::getMappedStorageKey in storage.cpp" << "type == STORAGE_TYPE_HASH" << endl;
         char data[256] = {0};
         sprintf(data, "%s%s", prefix.c_str(), json["value"].string_value().c_str());
         return getStorageKey(hasher, (const unsigned char *)data, strlen(data));
